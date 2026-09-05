@@ -106,9 +106,6 @@ public class AmmoBoxBlockEntity extends RandomizableContainerBlockEntity {
         if (!this.tryLoadLootTable(tag)) {
             ContainerHelper.loadAllItems(tag, this.items);
         }
-        if (tag.contains("LootTable")) {
-            System.out.println("Loaded loot table: " + tag.getString("LootTable"));
-        }
     }
 
     @Override
