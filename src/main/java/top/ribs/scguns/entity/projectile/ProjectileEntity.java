@@ -853,7 +853,7 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         if (protectionLevel > 0) {
             float reduction = protectionLevel * 0.10f;
             reduction = Math.min(reduction, 0.8f);
-            damage *= (1.0f - reduction);
+            damage *= 1.0f - reduction;
         }
 
         return damage;
@@ -984,13 +984,14 @@ public class ProjectileEntity extends Entity implements IEntityAdditionalSpawnDa
         return this.shooterId;
     }
 
-    float getCriticalDamage(ItemStack weapon, RandomSource rand, float damage) {
+    public float getCriticalDamage(ItemStack weapon, RandomSource rand, float damage) {
         float chance = GunModifierHelper.getCriticalChance(weapon);
         if (rand.nextFloat() < chance) {
             float critMultiplier = this.modifiedGun.getProjectile().getCritDamageMultiplier();
             return damage * critMultiplier;
+        } else {
+            return damage;
         }
-        return damage;
     }
 
     @Override
